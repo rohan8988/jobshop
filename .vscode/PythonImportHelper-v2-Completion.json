@@ -1,14 +1,5 @@
 [
     {
-        "label": "pandas",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "pandas",
-        "description": "pandas",
-        "detail": "pandas",
-        "documentation": {}
-    },
-    {
         "label": "matplotlib.pyplot",
         "kind": 6,
         "isExtraImport": true,
@@ -18,44 +9,12 @@
         "documentation": {}
     },
     {
-        "label": "streamlit",
+        "label": "pandas",
         "kind": 6,
         "isExtraImport": true,
-        "importPath": "streamlit",
-        "description": "streamlit",
-        "detail": "streamlit",
-        "documentation": {}
-    },
-    {
-        "label": "categorize_shift",
-        "importPath": "Src.timestamp",
-        "description": "Src.timestamp",
-        "isExtraImport": true,
-        "detail": "Src.timestamp",
-        "documentation": {}
-    },
-    {
-        "label": "categorize_shift",
-        "importPath": "Src.timestamp",
-        "description": "Src.timestamp",
-        "isExtraImport": true,
-        "detail": "Src.timestamp",
-        "documentation": {}
-    },
-    {
-        "label": "cp_model",
-        "importPath": "ortools.sat.python",
-        "description": "ortools.sat.python",
-        "isExtraImport": true,
-        "detail": "ortools.sat.python",
-        "documentation": {}
-    },
-    {
-        "label": "preprocessing",
-        "importPath": "Src.data_processing",
-        "description": "Src.data_processing",
-        "isExtraImport": true,
-        "detail": "Src.data_processing",
+        "importPath": "pandas",
+        "description": "pandas",
+        "detail": "pandas",
         "documentation": {}
     },
     {
@@ -65,6 +24,15 @@
         "importPath": "seaborn",
         "description": "seaborn",
         "detail": "seaborn",
+        "documentation": {}
+    },
+    {
+        "label": "streamlit",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "streamlit",
+        "description": "streamlit",
+        "detail": "streamlit",
         "documentation": {}
     },
     {
@@ -245,51 +213,6 @@
         "description": "src.layout",
         "isExtraImport": true,
         "detail": "src.layout",
-        "documentation": {}
-    },
-    {
-        "label": "EDA",
-        "kind": 2,
-        "importPath": "Src.EDA",
-        "description": "Src.EDA",
-        "peekOfCode": "def EDA(df):\n    df['actual_delivery_time'] = pd.to_datetime(df['actual_delivery_time'])\n    df['created_at'] = pd.to_datetime(df['created_at'])\n    total_days = (df['created_at'].max() - df['created_at'].min()).days + 1\n    df['delivery_time'] = (df['actual_delivery_time'] - df['created_at']).dt.total_seconds() / 60\n    df['hour'] = (df['created_at'].dt.hour) + 1 \n    df['day'] = (df['created_at'].dt.dayofweek) + 1\n    df['shift'] = df['created_at'].apply(categorize_shift)\n    shift_partner_count = df.groupby('shift')['total_onshift_partners'].max().reset_index()\n# Plotting the bar chart",
-        "detail": "Src.EDA",
-        "documentation": {}
-    },
-    {
-        "label": "load_file",
-        "kind": 2,
-        "importPath": "Src.data_loading",
-        "description": "Src.data_loading",
-        "peekOfCode": "def load_file(file):\n  try:\n    df = pd.read_csv(file)\n    print(\"Data loaded Sucessfully\")\n    return df\n  except FileNotFoundError:\n    print(\"File not Found. Please Check the file path\")\n    return None\n  except pd.errors.EmptyDataError:\n    print(\"file is empty\")",
-        "detail": "Src.data_loading",
-        "documentation": {}
-    },
-    {
-        "label": "preprocessing",
-        "kind": 2,
-        "importPath": "Src.data_processing",
-        "description": "Src.data_processing",
-        "peekOfCode": "def preprocessing(df):\n    df['actual_delivery_time'] = pd.to_datetime(df['actual_delivery_time'])\n    df['created_at'] = pd.to_datetime(df['created_at'])\n    total_days = (df['created_at'].max() - df['created_at'].min()).days + 1\n    #df['delivery_time'] = (df['actual_delivery_time'] - df['created_at']).dt.total_seconds() / 60\n    #df['hour'] = (df['created_at'].dt.hour) + 1 \n    #Find the earlist date\n    df \n    min_date = df['created_at'].min()\n    df['day'] = (df['created_at'] - min_date).dt.days + 1",
-        "detail": "Src.data_processing",
-        "documentation": {}
-    },
-    {
-        "label": "optimization",
-        "kind": 2,
-        "importPath": "Src.optimization",
-        "description": "Src.optimization",
-        "peekOfCode": "def optimization(df):\n    store_employee = pd.DataFrame(df['hourly_partner'])\n    total_order = pd.DataFrame(df['order_store'])\n    unique_store = store_employee['store_id'].unique()\n    df1 = pd.DataFrame(df['data'])\n    unique_shift = pd.DataFrame(['Night-Morning Shift', 'Morning Shift', 'Noon Shift', 'Afternoon Shift', 'Evening Shift', 'Night Shift']) \n    # Model\n    model = cp_model.CpModel()\n    shifts = []\n    for store_id in (unique_store):",
-        "detail": "Src.optimization",
-        "documentation": {}
-    },
-    {
-        "label": "categorize_shift",
-        "kind": 2,
-        "importPath": "Src.timestamp",
-        "description": "Src.timestamp",
-        "peekOfCode": "def categorize_shift(timestamp):\n    hour = timestamp.hour + 1\n    shifts = {4: 'Night-Morning Shift', 8: 'Morning Shift', 12: 'Noon Shift', 16: 'Afternoon Shift', 20: 'Evening Shift', 24: 'Night Shift'}\n    return shifts.get(min(shifts.keys(), key=lambda x: abs(x - hour)), 'Other Shift')",
-        "detail": "Src.timestamp",
         "documentation": {}
     },
     {
